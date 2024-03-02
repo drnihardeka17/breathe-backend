@@ -22,7 +22,7 @@ exports.getAllNews = async (req, res) => {
   }
 };
 
-// Get news by ID
+// Get news by ID and work on them
 exports.getNewsById = async (req, res) => {
   try {
     const news = await News.findById(req.params.id);
