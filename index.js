@@ -14,6 +14,9 @@ const blogscategoryRoutes = require('./routes/blogcategoryRoutes');
 const webcontentRoutes = require('./routes/webcontentRoutes');
 const sampleRoutes = require('./routes/sampleCollectionRoutes');
 const newsRoutes = require('./routes/newsRoutes');
+const videoRoutes = require('./routes/videoRoutes');
+const applicationRoutes = require('./routes/appointmentRoutes');
+const careerRoutes = require('./routes/careerRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -53,6 +56,9 @@ app.use('/api/blogs',blogsRoutes);
 app.use('/api/blogscategory',blogscategoryRoutes);
 app.use('/api/web',webcontentRoutes);
 app.use('/api/samplecollection',sampleRoutes);
+app.use('/api/videos',videoRoutes);
+app.use('/api/career',careerRoutes);
+app.use('./api/apply',applicationRoutes);
 //*****************************************************************************************************************************************/
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
