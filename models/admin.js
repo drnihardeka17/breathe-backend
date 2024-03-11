@@ -1,24 +1,32 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
-const AdminSchema = new mongoose.Schema({
-  email: { type: String, unique: true, required: true },
+const adminSchema = new mongoose.Schema({
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true }
 });
 
-AdminSchema.pre('save', async function(next) {
-  const admin = this;
-  if (!admin.isModified('password')) return next();
-  const salt = await bcrypt.genSalt(10);
-  const hash = await bcrypt.hash(admin.password, salt);
-  admin.password = hash;
-  next();
+// Hashing password before saving to the database
+adminSchema.pre('save', async function(next) {
+  try {
+    if (!this.isModified('password')) return next();
+    const hashedPassword = await bcrypt.hash(this.password, 10);
+    this.password = hashedPassword;
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
-AdminSchema.methods.isValidPassword = async function(password) {
-  const admin = this;
-  const compare = await bcrypt.compare(password, admin.password);
-  return compare;
+// Method to validate password
+adminSchema.methods.isValidPassword = async function(password) {
+  try {
+    return await bcrypt.compare(password, this.password);
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
-module.exports = mongoose.model('Admin', AdminSchema);
+const Admin = mongoose.model('Admin', adminSchema);
+
+module.exports = Admin;

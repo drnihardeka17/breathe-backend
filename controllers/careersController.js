@@ -1,4 +1,4 @@
-const Career = require('../models/career');
+const Career = require('../models/careers');
 
 // Create a new career
 exports.createCareer = async (req, res) => {
