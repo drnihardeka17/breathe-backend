@@ -46,6 +46,7 @@ exports.createDoctor = async (req, res) => {
   }
 };
 
+
 // Get all doctors
 exports.getAllDoctors = async (req, res) => {
   try {

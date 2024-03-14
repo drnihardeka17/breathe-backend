@@ -34,8 +34,8 @@ const mongoUrl = process.env.MONGODB_URI;
 app.use(cors());
 app.use(express.json());
 app.use(fileUpload());
-app.use(bodyParser.json({ limit: '100mb' }));
-app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 // Connect to MongoDB
 mongoose.connect(mongoUrl, {
