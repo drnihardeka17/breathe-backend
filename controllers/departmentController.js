@@ -44,12 +44,11 @@ exports.getDepartmentById = async (req, res) => {
 exports.updateDepartmentById = async (req, res) => {
   try {
     const { id } = req.params;
-    const { dname, description, image, doctors } = req.body;
+    const { dname, description, image } = req.body;
     const department = await Department.findByIdAndUpdate(id, {
       dname,
       description,
-      image,
-      doctors
+      image
     }, { new: true });
     if (!department) {
       return res.status(404).json({ message: 'Department not found' });
