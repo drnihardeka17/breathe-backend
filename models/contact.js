@@ -6,7 +6,17 @@ const contactUsSchema = new mongoose.Schema({
   phone: { type: String, required: true },
   subject: { type: String, required: true },
   message: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now }
+  createdOn: { type: Date, default: Date.now },
+  updatedOn: { type: Date, default: Date.now }
+});
+
+contactUsSchema.pre('save', function(next) {
+  const currentDate = new Date();
+  this.updatedOn = currentDate;
+  if (!this.createdOn) {
+    this.createdOn = currentDate;
+  }
+  next();
 });
 
 module.exports = mongoose.model('ContactUs', contactUsSchema);
