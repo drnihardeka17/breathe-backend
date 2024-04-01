@@ -18,10 +18,10 @@ const blogscategoryRoutes = require('./routes/blogcategoryRoutes');
 const webcontentRoutes = require('./routes/webcontentRoutes');
 const sampleRoutes = require('./routes/sampleCollectionRoutes');
 const newsRoutes = require('./routes/newsRoutes');
-const videoRoutes = require('./routes/videoRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
 const careerRoutes = require('./routes/careerRoutes');
 const packagesRoutes = require('./routes/packagesRoutes');
+const VideoRoutes= require('./routes/videoRoutes');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -80,10 +80,10 @@ app.use('/api/blogs', blogsRoutes);
 app.use('/api/blogscategory', blogscategoryRoutes);
 app.use('/api/web', webcontentRoutes);
 app.use('/api/samplecollection', sampleRoutes);
-app.use('/api/videos', videoRoutes);
 app.use('/api/career', careerRoutes);
 app.use('/api/apply', applicationRoutes);
 app.use('/api/packages',packagesRoutes);
+app.use('/api/videos',VideoRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
