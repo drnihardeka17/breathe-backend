@@ -3,12 +3,11 @@ const Department = require('../models/departments');
 // Create a new department
 exports.createDepartment = async (req, res) => {
   try {
-    const { dname, description, image, doctors } = req.body;
+    const { dname, description, image } = req.body;
     const department = new Department({
       dname,
       description,
-      image,
-      doctors
+      image
     });
     await department.save();
     res.status(201).json(department);

@@ -19,13 +19,13 @@ exports.createBlog = async (req, res) => {
   }
 };
 
-
 // Get all blogs with populated category and author
 exports.getAllBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find()
       .populate('category', 'name') // Populate category and select only name field
       .populate('author', '-password'); // Populate author and exclude password field
+
     res.json(blogs);
   } catch (error) {
     res.status(500).json({ message: error.message });
