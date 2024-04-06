@@ -6,12 +6,12 @@ const contactUsSchema = new mongoose.Schema({
   phone: { type: String, required: true },
   subject: { type: String, required: true },
   message: { type: String, required: true },
-  createdOn: { type: Date, default: Date.now },
-  updatedOn: { type: Date, default: Date.now }
+  createdOn: { type: String, default: new Date().toLocaleString() }, // Store as string in readable format
+  updatedOn: { type: String, default: new Date().toLocaleString() } // Store as string in readable format
 });
 
 contactUsSchema.pre('save', function(next) {
-  const currentDate = new Date();
+  const currentDate = new Date().toLocaleString(); // Get current date in readable format
   this.updatedOn = currentDate;
   if (!this.createdOn) {
     this.createdOn = currentDate;
